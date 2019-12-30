@@ -6,7 +6,6 @@ const tildify = require('tildify');
 const fs = require('fs');
 
 exports.decorateConfig = (config) => {
-    console.log('running decorateConfig');
     const colorForeground = color(config.foregroundColor || '#fff');
     const colorBackground = color(config.backgroundColor || '#000');
     const colors = {
@@ -206,6 +205,9 @@ const gitBranch = (repo, cb) => {
 
 const gitRemote = (repo, cb) => {
     exec(`git ls-remote --get-url`, { cwd: repo }, (err, stdout) => {
+        if (err) {
+            return cb(err);
+        }
         cb(null, stdout.trim().replace(/^git@(.*?):/, 'https://$1/').replace(/[A-z0-9\-]+@/, '').replace(/\.git$/, ''));
     });
 }
@@ -247,12 +249,18 @@ const gitStaged = (repo, cb) => {
 
 const gitAhead = (repo, cb) => {
     exec(`git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null`, { cwd: repo }, (err, stdout) => {
+        if (err) {
+            return cb(err);
+        }
         cb(null, parseInt(stdout, 10));
     });
 }
 
 const gitBehind = (repo, cb) => {
     exec(`git rev-list --left-only --count @'{u}'...HEAD 2>/dev/null`, { cwd: repo }, (err, stdout) => {
+        if (err) {
+            return cb(err);
+        }
         cb(null, parseInt(stdout, 10));
     });
 }
