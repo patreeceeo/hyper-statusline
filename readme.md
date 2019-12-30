@@ -2,8 +2,19 @@
 
 > Status Line Plugin for [Hyper](https://hyper.is). Shows clickable & useful information. Matches any theme.
 
-![hyper-statusline](https://cloud.githubusercontent.com/assets/1430576/21891665/14d29070-d8d4-11e6-9e98-b12ed28be93a.png)
+![hyper-statusline](./statusline-screenshot.png)
 
+Displays:
+  * CWD
+  * Git branch
+  * Red branch icon when merging
+  * Number of untracked files
+  * Number of dirty files
+  * Number of staged files
+  * Number of commits ahead of origin
+  * Number of commits behind origin
+
+Uses icons from [Nerd Fonts](https://www.nerdfonts.com)
 
 ## Install
 
@@ -22,6 +33,21 @@ module.exports = {
 
 Add following to `~/.hyper.js`
 
+### Change Git Untracked Color
+Expected value is `CSS color`
+
+```javascript
+module.exports = {
+  config: {
+    ...
+      hyperStatusLine: {
+        untrackedColor: 'chartreuse',
+      }
+    ...
+  }
+}
+```
+
 ### Change Git Dirty Color
 Expected value is `CSS color`
 
@@ -31,6 +57,21 @@ module.exports = {
     ...
       hyperStatusLine: {
         dirtyColor: 'salmon',
+      }
+    ...
+  }
+}
+```
+
+### Change Git Staged Color
+Expected value is `CSS color`
+
+```javascript
+module.exports = {
+  config: {
+    ...
+      hyperStatusLine: {
+        stagedColor: 'cornflowerblue',
       }
     ...
   }
@@ -52,6 +93,21 @@ module.exports = {
 }
 ```
 
+### Change Git Behind Color
+Expected value is `CSS color`
+
+```javascript
+module.exports = {
+  config: {
+    ...
+      hyperStatusLine: {
+        behindColor: 'peachpuff',
+      }
+    ...
+  }
+}
+```
+
 ### Disable Footer Transparency
 Default value is set to `true`
 
@@ -66,12 +122,6 @@ module.exports = {
   }
 }
 ```
-
-
-## Theme
-
-* [hyper-chesterish](https://github.com/henrikdahl/hyper-chesterish)
-
 
 ## License
 
