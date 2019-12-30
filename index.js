@@ -107,8 +107,6 @@ exports.decorateConfig = (config) => {
             }
             .footer_footer .item_cwd:before {
                 content: '\uf07c';
-                font-size: ${config.fontSize * 2}px;
-                float: left;
             }
             .footer_footer .item_branch:before {
                 content: '\ue725';
