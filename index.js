@@ -4,6 +4,7 @@ const color = require('color');
 const afterAll = require('after-all-results');
 const tildify = require('tildify');
 const fs = require('fs');
+const icons = require('nf-icons');
 
 exports.decorateConfig = (config) => {
     const colorForeground = color(config.foregroundColor || '#fff');
@@ -105,13 +106,13 @@ exports.decorateConfig = (config) => {
                 font-weight: 500;
             }
             .footer_footer .item_cwd:before {
-                content: '\uf07c';
+                content: '${icons.utf16(icons.names.FA_FOLDER_OPEN_O)}';
             }
             .footer_footer .item_branch:before {
-                content: '\ue725';
+                content: '${icons.utf16(icons.names.DEV_GIT_BRANCH)}';
             }
             .footer_footer .item_branch.item_branch__merging:before {
-                content: '\uf071\ue727';
+                content: '${icons.utf16(icons.names.FA_WARNING)} ${icons.utf16(icons.names.DEV_GIT_MERGE)}';
                 color: ${hyperStatusLine.mergingColor};
             }
             .footer_footer .item_untracked {
@@ -125,28 +126,28 @@ exports.decorateConfig = (config) => {
                 color: ${hyperStatusLine.dirtyColor};
             }
             .footer_footer .item_dirty:before {
-                content: '\uf6f6';
+                content: '${icons.utf16(icons.names.FA_PENCIL_SQUARE_O)}';
                 color: ${hyperStatusLine.dirtyColor};
             }
             .footer_footer .item_staged {
                 color: ${hyperStatusLine.stagedColor};
             }
             .footer_footer .item_staged:before {
-                content: '\uf21a';
+                content: '${icons.utf16(icons.names.MDI_CHECKBOX_MULTIPLE_MARKED_OUTLINE)}';
                 color: ${hyperStatusLine.stagedColor};
             }
             .footer_footer .item_ahead {
                 color: ${hyperStatusLine.aheadColor};
             }
             .footer_footer .item_ahead:before {
-                content: '\uf062';
+                content: '${icons.utf16(icons.names.FA_ARROW_UP)}';
                 color: ${hyperStatusLine.aheadColor};
             }
             .footer_footer .item_behind {
                 color: ${hyperStatusLine.behindColor};
             }
             .footer_footer .item_icon.item_behind:before {
-                content: '\uf063';
+                content: '${icons.utf16(icons.names.FA_ARROW_DOWN)}';
                 color: ${hyperStatusLine.behindColor};
             }
             .notifications_view {

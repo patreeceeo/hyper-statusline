@@ -23,6 +23,7 @@
   "dependencies": {
     "after-all-results": "^2.0.0",
     "color": "^2.0.0",
+    "nf-icons": "^0.1.0",
     "tildify": "^1.2.0"
   }
 }
