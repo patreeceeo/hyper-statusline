@@ -249,7 +249,7 @@ const gitStaged = (repo, cb) => {
 }
 
 const gitAhead = (repo, cb) => {
-    exec(`git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null`, { cwd: repo }, (err, stdout) => {
+    exec(`git rev-list --left-only --count HEAD...@'{u}'`, { cwd: repo }, (err, stdout) => {
         if (err) {
             return cb(err);
         }
@@ -258,7 +258,7 @@ const gitAhead = (repo, cb) => {
 }
 
 const gitBehind = (repo, cb) => {
-    exec(`git rev-list --left-only --count @'{u}'...HEAD 2>/dev/null`, { cwd: repo }, (err, stdout) => {
+    exec(`git rev-list --left-only --count @'{u}'...HEAD`, { cwd: repo }, (err, stdout) => {
         if (err) {
             return cb(err);
         }
@@ -268,10 +268,6 @@ const gitBehind = (repo, cb) => {
 
 const gitCheck = (repo, cb) => {
     const next = afterAll((err, results) => {
-        if (err) {
-            return cb(err);
-        }
-
         const branch = results[0];
         const remote = results[1];
         const merging = results[2];
@@ -281,7 +277,7 @@ const gitCheck = (repo, cb) => {
         const ahead = results[6];
         const behind = results[7];
 
-        cb(null, {
+        cb(err, {
             branch: branch,
             remote: remote,
             merging: merging,
@@ -322,7 +318,7 @@ const setGit = (repo) => {
 
         gitCheck(repo, (err, result) => {
             if (err) {
-                throw err;
+                console.error(err);
             }
 
             git = {
